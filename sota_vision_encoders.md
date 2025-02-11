@@ -58,11 +58,9 @@ We propose incorporating tasks like dense pose estimation and object detection d
 
 ## Training Cost Estimation
 
-SigLIP achieved a 71% zero-shot accuracy on ImageNet after being trained for only 48 TPUv4 days.
+SigLIP-B (100M text-encoder + 100M vision-encoder) achieved a 71% zero-shot accuracy on ImageNet after being trained for only 64 TPUv4 days.
 
-A TPUv4 has 275 TFLOPS of compute, 1.2 TB/s of memory bandwidth, and 32 GB of HBM memory ([source](https://cloud.google.com/tpu/docs/v4)). In contrast, an H100 offers 2,000 TFLOPS (approximately 7x), 3.3 TB/s of bandwidth, and 80 GB of RAM ([source](https://www.nvidia.com/en-in/data-center/h100/)).
-
-Based on these specifications, the training cost would be roughly equivalent to 7 H100 days.  This translates to approximately $350 (7 days * 24 hours/day * $2/H100 hour). Using optimizations like exploring FP8 training and exploring data and efficiency improvements, would help reduce this cost even.
+A TPUv4 has 275 TFLOPS ([source](https://cloud.google.com/tpu/docs/v4)), and thus it required 0.275 PFLOPs * 64 = 17 PFLOPs days ~= 17 H100 days ~= $800 (17 x24 x 2\$). See [Compute conversion](https://github.com/kalpalabs/docs/blob/main/training_compute.md) between PFLOPs / H100 / $ for reference. 
 
 ## Evaluation Benchmarks
 
